@@ -1,14 +1,15 @@
+import { ComponentPropsWithoutRef } from "react";
+
 type InputProps = {
   label: string;
   id: string;
-  type: "text" | "number";
-};
+} & ComponentPropsWithoutRef<"input">;
 
-export default function Input({ label, id, type }: InputProps) {
+export default function Input({ label, id, ...props }: InputProps) {
   return (
     <p>
       <label htmlFor={id}>{label}</label>
-      <input id={id} type={type} />
+      <input id={id} {...props} />
     </p>
   );
 }
