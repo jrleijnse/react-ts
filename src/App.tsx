@@ -1,25 +1,23 @@
 import Input from "./components/Input";
+import Form from "./components/Form";
 import Button from "./components/Button";
-import Container from "./components/Container";
 
 function App() {
-  function doSomething() {
-    console.log("hi");
+  function handleSave(data: unknown) {
+    const extractedData = data as { name: string; age: string };
+
+    console.log(extractedData);
   }
 
   return (
     <main>
-      <Input id="name" type="text" label="Your name" />
-      <Input id="age" type="number" label="Your age" />
-      <p>
-        <Button>A Button</Button>
-      </p>
-      <p>
-        <Button href="https://google.com">A Link</Button>
-      </p>
-      <Container onClick={doSomething} as={"button"}>
-        Click me
-      </Container>
+      <Form onSave={handleSave}>
+        <Input type="text" label="Name" id="name" />
+        <Input type="number" label="Age" id="age" />
+        <p>
+          <Button>Save</Button>
+        </p>
+      </Form>
     </main>
   );
 }
