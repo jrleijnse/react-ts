@@ -1,20 +1,22 @@
 import {
-  type FormEvent,
+  type ReactNode,
   type ComponentPropsWithoutRef,
+  type FormEvent,
   useRef,
   useImperativeHandle,
   forwardRef,
-} from 'react';
+} from "react";
 
-export type FormHandle = {
+export type FormRef = {
   clear: () => void;
 };
 
-type FormProps = ComponentPropsWithoutRef<'form'> & {
+type FormProps = ComponentPropsWithoutRef<"form"> & {
   onSave: (value: unknown) => void;
+  children: ReactNode;
 };
 
-const Form = forwardRef<FormHandle, FormProps>(function Form(
+const Form = forwardRef<FormRef, FormProps>(function Form(
   { onSave, children, ...otherProps },
   ref
 ) {
@@ -23,7 +25,6 @@ const Form = forwardRef<FormHandle, FormProps>(function Form(
   useImperativeHandle(ref, () => {
     return {
       clear() {
-        console.log('CLEARING');
         form.current?.reset();
       },
     };
