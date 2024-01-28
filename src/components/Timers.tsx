@@ -7,7 +7,9 @@ export default function Timers() {
   return (
     <ul>
       {timers.map((timer) => (
-        <Timer name={timer.name} duration={timer.duration}></Timer>
+        <li key={timer.name}>
+          <Timer {...timer} />
+        </li>
       ))}
     </ul>
   );
